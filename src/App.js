@@ -10,6 +10,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.handleSelect = this.handleSelect.bind(this);
+    this.resetTour = this.resetTour.bind(this);
   }
 
   handleSelect(index, last) {
@@ -18,6 +19,11 @@ class App extends Component {
         this.joyride.next();
         }, 1); 
     }
+  }
+
+  resetTour() {
+    console.dir(this);
+    this.joyride.reset(true);
   }
 
   render() {
@@ -38,8 +44,13 @@ class App extends Component {
             },
             {
               title: 'Click Tab',
-              text: 'DO NOT CLICK NEXT, CLICK THE TAB!',
+              text: 'Hides the "next" button!',
               selector: '.twoTab',
+              style: {
+                footer: {
+                  display: 'none',
+                },
+              },
             },
             {
               title: 'Tab Two',
@@ -51,6 +62,7 @@ class App extends Component {
           showOverlay={true}
           allowClicksThruHole={true}
           autoStart={true}
+          disableOverlay={true}
         />
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
@@ -72,6 +84,8 @@ class App extends Component {
             <p className="two">22222222</p>
           </TabPanel>
         </Tabs>
+
+        <button type="button" onClick={this.resetTour}>Reset Tour</button>
       </div>
     );
   }
